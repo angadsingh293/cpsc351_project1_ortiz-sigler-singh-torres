@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/CPSC351_Project1.dir/main.cpp.o CMakeFiles/CPSC351_Project1.dir/recv.cpp.o CMakeFiles/CPSC351_Project1.dir/sender.cpp.o  -o CPSC351_Project1 

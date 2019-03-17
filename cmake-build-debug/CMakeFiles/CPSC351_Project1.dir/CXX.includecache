@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/xander/CLionProjects/CPSC351-Project1/msg.h
+
+/home/xander/CLionProjects/CPSC351-Project1/recv.cpp
+sys/shm.h
+-
+sys/msg.h
+-
+signal.h
+-
+stdio.h
+-
+stdlib.h
+-
+unistd.h
+-
+msg.h
+/home/xander/CLionProjects/CPSC351-Project1/msg.h
+
+/home/xander/CLionProjects/CPSC351-Project1/sender.cpp
+sys/shm.h
+-
+sys/msg.h
+-
+stdio.h
+-
+stdlib.h
+-
+unistd.h
+-
+msg.h
+/home/xander/CLionProjects/CPSC351-Project1/msg.h
+
