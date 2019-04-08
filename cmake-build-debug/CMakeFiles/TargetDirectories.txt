@@ -1,3 +1,0 @@
-/home/xander/CLionProjects/CPSC351-Project1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/xander/CLionProjects/CPSC351-Project1/cmake-build-debug/CMakeFiles/CPSC351_Project1.dir
-/home/xander/CLionProjects/CPSC351-Project1/cmake-build-debug/CMakeFiles/edit_cache.dir
