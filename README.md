@@ -1,4 +1,4 @@
-# cpsc351-project1
+# cpsc351_project1_ortiz-sigler-singh-torres
 
 - Spring 2019 CPSC 351-03/0X Project 1
 - C++
