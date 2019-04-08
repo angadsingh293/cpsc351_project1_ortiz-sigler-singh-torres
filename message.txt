@@ -1,0 +1,7 @@
+This is an example message of what will be sent through the two programs. 
+
+It is highly recomended that you change the text here so that you are able to supply the text that is being transmitted between the two programs.
+
+This is just some random words and characters that are being supplied by our team to test and make sure that everything works.
+
+Please give us an A <3 We really want to do well in this class!
