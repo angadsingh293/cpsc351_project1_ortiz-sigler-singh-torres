@@ -47,12 +47,12 @@ void init(int& shmid, int& msqid, void*& sharedMemPtr)
 		    may have the same key.
 	 */
 
-    printf("Initializing the  ftok get...\n");
+	printf("Initializing the  ftok get...\n");
 
-    /* Generate Unique Key */
-    key_t key = ftok("keyfile.txt",'a');
-    if (key == -1){ //It doesn't exist so create it.
-    	printf("Creating keyfile.txt");
+	/* Generate Unique Key */
+	key_t key = ftok("keyfile.txt",'a');
+	if (key == -1){ //It doesn't exist so create it.
+		printf("Creating keyfile.txt");
 		ofstream ofs;
 		ofs.open("keyfile.txt");
 		ofs << "Hello World";
@@ -64,33 +64,33 @@ void init(int& shmid, int& msqid, void*& sharedMemPtr)
 			perror("Ftok has failed to generate key");
 			exit(1);
 		}
-    }
+	}
 
 	printf("Initializing the  shmget get...\n");
-    /* TODO: Allocate a piece of shared memory. The size of the segment must be SHARED_MEMORY_CHUNK_SIZE. */
-    /* Returns the ID of the shared memory */
-    shmid = shmget(key,SHARED_MEMORY_CHUNK_SIZE,0666);
-    if (shmid == -1){
-        perror("Shmget id is not valid");
-        exit(1);
-    }
+	/* TODO: Allocate a piece of shared memory. The size of the segment must be SHARED_MEMORY_CHUNK_SIZE. */
+	/* Returns the ID of the shared memory */
+	shmid = shmget(key,SHARED_MEMORY_CHUNK_SIZE,IPC_CREAT | 0666);
+	if (shmid == -1){
+		perror("Shmget id is not valid");
+		exit(1);
+	}
 
 	printf("Initializing the  shmat...\n");
-    /* TODO: Attach to the shared memory */
-    /* Using ID of shared memory, attach to it */
-    sharedMemPtr = shmat(shmid,(void*)0,0);
-    if (sharedMemPtr == (char *)(-1)){
-        perror("Shmat failed to attack to shared memory");
-        exit(1);
-    }
+	/* TODO: Attach to the shared memory */
+	/* Using ID of shared memory, attach to it */
+	sharedMemPtr = shmat(shmid,(void*)0,0);
+	if (sharedMemPtr == (char *)(-1)){
+		perror("Shmat failed to attack to shared memory");
+		exit(1);
+	}
 
 	printf("Initializing the  msgget get...\n");
-    /* TODO: Create a message queue */
-    /* Store ID for msgqueue  */
-    msqid = msgget(key, 0666 | IPC_CREAT);
-    if (msqid == -1){
-        perror("msgget failed to create a message queue");
-    }
+	/* TODO: Create a message queue */
+	/* Store ID for msgqueue  */
+	msqid = msgget(key, 0666 | IPC_CREAT);
+	if (msqid == -1){
+		perror("msgget failed to create a message queue");
+	}
 }
 
 
@@ -113,7 +113,7 @@ void mainLoop()
 		exit(-1);
 	}
 
-    /* TODO: Receive the message and get the message size. The message will
+	/* TODO: Receive the message and get the message size. The message will
      * contain regular information. The message will be of SENDER_DATA_TYPE
      * (the macro SENDER_DATA_TYPE is defined in msg.h).  If the size field
      * of the message is not 0, then we copy that many bytes from the shared
@@ -136,15 +136,15 @@ void mainLoop()
 	{
 
 		printf("Recieving message to denote size in shared memory\n");
-        status = msgrcv(msqid, &rMsg, sizeof(rMsg) - sizeof(long), SENDER_DATA_TYPE, 0);
-        if( status == -1) //Is it size of int?
-        {
-            perror("Couldn't receive message to denote size in shared memory");
-            exit(1);
-        }
-        printf("Recieved Message to denote size in shared memory");
+		status = msgrcv(msqid, &rMsg, sizeof(rMsg) - sizeof(long), SENDER_DATA_TYPE, 0);
+		if( status == -1) //Is it size of int?
+		{
+			perror("Couldn't receive message to denote size in shared memory");
+			exit(1);
+		}
+		printf("Recieved Message to denote size in shared memory");
 
-        msgSize = rMsg.size; //Store the size of data in shared memory obtained in message
+		msgSize = rMsg.size; //Store the size of data in shared memory obtained in message
 		printf("Data size in shared memory (obtained from message) is: %d\n", msgSize);
 
 		/* If the sender is not telling us that we are done, then get to work */
@@ -160,19 +160,19 @@ void mainLoop()
  			 * I.e. send a message of type RECV_DONE_TYPE (the value of size field
  			 * does not matter in this case).
  			 */
-            printf("Sending the message to ask for more data\n");
+			printf("Sending the message to ask for more data\n");
 			sMsg.mtype = RECV_DONE_TYPE;
 			sMsg.size = 0;
-            if (msgSize < SHARED_MEMORY_CHUNK_SIZE)
-                msgSize = 0;
-            status = msgsnd(msqid, &sMsg, 0,0);
+			if (msgSize < SHARED_MEMORY_CHUNK_SIZE)
+				msgSize = 0;
+			status = msgsnd(msqid, &sMsg, 0,0);
 			if (status == -1){
-			    perror("Couldn't send message to ask for more data");
-			    exit(1);
+				perror("Couldn't send message to ask for more data");
+				exit(1);
 			}
-            printf("Sent the message to ask for more data\n");
+			printf("Sent the message to ask for more data\n");
 		}
-		/* We are done */
+			/* We are done */
 		else
 		{
 			/* Close the file */
@@ -200,7 +200,7 @@ void cleanUp(const int& shmid, const int& msqid, void* sharedMemPtr)
 	shmctl(shmid, IPC_RMID, NULL);
 
 	/* TODO: Deallocate the message queue */
-    msgctl(msqid, IPC_RMID, NULL);
+	msgctl(msqid, IPC_RMID, NULL);
 }
 
 /**
@@ -222,10 +222,10 @@ int main(int argc, char** argv)
  	 * queues and shared memory before exiting. You may add the cleaning functionality
  	 * in ctrlCSignal().
  	 */
-    signal(SIGINT, ctrlCSignal);
+	signal(SIGINT, ctrlCSignal);
 
 
-    /* Initialize */
+	/* Initialize */
 	init(shmid, msqid, sharedMemPtr);
 	printf("Finishied initialzing, starting main loop.\n");
 
@@ -233,7 +233,7 @@ int main(int argc, char** argv)
 	mainLoop();
 	printf("Main loop over, now cleaning up.\n");
 
-    cleanUp(shmid, msqid, sharedMemPtr);
+	cleanUp(shmid, msqid, sharedMemPtr);
 	printf("Everything is cleaned up. Shutting down.\n");
 
 	return 0;

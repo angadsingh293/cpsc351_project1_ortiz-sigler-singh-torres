@@ -61,7 +61,7 @@ void init(int& shmid, int& msqid, void*& sharedMemPtr)
     printf("Initializing the  shmget get...\n");
     /* TODO: Allocate a piece of shared memory. The size of the segment must be SHARED_MEMORY_CHUNK_SIZE. */
     /* Returns the ID of the shared memory */
-    shmid = shmget(key,SHARED_MEMORY_CHUNK_SIZE,IPC_CREAT | 0666);
+    shmid = shmget(key,SHARED_MEMORY_CHUNK_SIZE,0666);
     if (shmid == -1){
         perror("Shmget id is not valid");
         exit(1);
@@ -96,13 +96,6 @@ void cleanUp(const int& shmid, const int& msqid, void* sharedMemPtr)
 {
     /* TODO: Detach from shared memory */
     shmdt(sharedMemPtr);
-
-    /* TODO: Deallocate the shared memory chunk */
-    //(IPC_RMID removes after all other processes detach)
-    shmctl(shmid, IPC_RMID, NULL);
-
-    /* TODO: Deallocate the message queue */
-    msgctl(msqid, IPC_RMID, NULL);
 }
 
 
