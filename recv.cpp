@@ -163,8 +163,6 @@ void mainLoop()
 			printf("Sending the message to ask for more data\n");
 			sMsg.mtype = RECV_DONE_TYPE;
 			sMsg.size = 0;
-			if (msgSize < SHARED_MEMORY_CHUNK_SIZE)
-				msgSize = 0;
 			status = msgsnd(msqid, &sMsg, 0,0);
 			if (status == -1){
 				perror("Couldn't send message to ask for more data");

@@ -143,7 +143,7 @@ void send(const char* fileName)
             perror("Couldn't send the part of the file!");
             exit(1);
         }
-        printf("Sent the part of the file\n");
+        printf("Sent the part of the file size: %d\n", sMsg.size);
 
         /* TODO: Wait until the receiver sends us a message of type RECV_DONE_TYPE telling us
          * that he finished saving the memory chunk.
@@ -155,7 +155,7 @@ void send(const char* fileName)
             perror("Couldn't recieve message to continue");
             exit(1);
         }
-        printf("Recieved message to continue\n");
+        printf("Recieved message to continue size is: %d\n",rMsg.size);
     }
 
 
@@ -164,9 +164,9 @@ void send(const char* fileName)
       * sending a message of type SENDER_DATA_TYPE with size field set to 0.
       */
     printf("Sending the final message to signify file is done\n");
-    sMsg.mtype = RECV_DONE_TYPE;
+    sMsg.mtype = SENDER_DATA_TYPE;
     sMsg.size = 0;
-    status = msgsnd(msqid, &sMsg, 0,0);
+    status = msgsnd(msqid, &sMsg, sizeof(sMsg) - sizeof(long), 0);
     if (status == -1){
         perror("Couldn't send final message to signify file is done");
         exit(1);
