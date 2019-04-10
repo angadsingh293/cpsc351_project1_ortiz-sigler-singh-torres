@@ -5,8 +5,8 @@
 - How to execute and run:
   - Download and unzip file
   - Open terminal in directory and run "make"
-  - Open up another terminal and run "./sender message.txt" where message.txt is a default file we included (can be any file)
-  - Go back to the first terminal (or a new instance) and run "./recv"
+  - Using the same terminal, run "./recv"
+  - Create a new terminal instance and run "./sender message.txt" where message.txt is a default file we included (can be any file)
   - Both programs should execute and should store the data in "recvfile"
 - We did NOT implement the extra credit
 - No special notes when executing program.
