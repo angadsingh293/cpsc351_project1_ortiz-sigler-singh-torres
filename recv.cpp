@@ -177,6 +177,15 @@ void mainLoop()
 			fclose(fp);
 		}
 	}while(msgSize != 0);
+	
+	/* Print out contents of recieve file */
+	printf("\n\n%s\n",string(50,'~').c_str());
+	fp = fopen(recvFileName, "r"); //Have to open it in read mode
+	int c;
+	while ((c = getc(fp)) != EOF){
+       		putchar(c);
+	}
+	printf("\n%s\n\n\n",string(50,'~').c_str());
 }
 
 
