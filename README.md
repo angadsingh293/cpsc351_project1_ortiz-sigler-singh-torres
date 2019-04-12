@@ -1,6 +1,8 @@
 # cpsc351_project1_ortiz-sigler-singh-torres
 
 - Spring 2019 CPSC 351-03/0X Project 1
+- Collaborators
+  - Alexander Sigler - 890457906 - 97WaterPolo@csu.fullerton.edu
 - C++
 - How to execute and run:
   - Download and unzip file
@@ -13,7 +15,7 @@
 
 
 References:
-https://www.geeksforgeeks.org/ipc-shared-memory/
-https://www.geeksforgeeks.org/ipc-using-message-queues/
-http://beej.us/guide/bgipc/output/html/multipage/shm.html
-http://beej.us/guide/bgipc/output/html/multipage/mq.html
+- https://www.geeksforgeeks.org/ipc-shared-memory/
+- https://www.geeksforgeeks.org/ipc-using-message-queues/
+- http://beej.us/guide/bgipc/output/html/multipage/shm.html
+- http://beej.us/guide/bgipc/output/html/multipage/mq.html
