@@ -3,6 +3,7 @@
 - Spring 2019 CPSC 351-03/0X Project 1
 - Collaborators
   - Alexander Sigler - 890457906 - 97WaterPolo@csu.fullerton.edu
+  - Jesus Guzman-Torres- 889792628 - jesusguzman-torres@csu.fullerton.edu
 - C++
 - How to execute and run:
   - Download and unzip file
